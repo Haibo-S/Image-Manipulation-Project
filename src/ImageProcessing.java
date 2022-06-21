@@ -20,8 +20,8 @@ public class ImageProcessing {
         // stretchHorizontally(shrinkVertically(colorFilter(negativeColor(trimBorders(invertImage(imageData),
         // 50)), 200, 20, 40)));
         // Painting with pixels
-        int[][] negativeImageData = negativeColor(imageData);
-        twoDToImage(negativeImageData, "negative_apple.jpg");
+        int[][] wideApple = stretchHorizontally(imageData);
+        twoDToImage(wideApple, "wideApple.jpg");
     }
 
     // Image Processing Methods
@@ -56,8 +56,17 @@ public class ImageProcessing {
     }
 
     public static int[][] stretchHorizontally(int[][] imageTwoD) {
-        // TODO: Fill in the code for this method
-        return null;
+        int[][] newImage = new int[imageTwoD.length][imageTwoD[0].length * 2];
+        int pointer = 0;
+        for (int i = 0; i < imageTwoD.length; i++) {
+            for (int j = 0; j < imageTwoD[0].length; j++) {
+                newImage[i][pointer] = imageTwoD[i][j];
+                newImage[i][pointer + 1] = imageTwoD[i][j];
+                pointer += 2;
+            }
+            pointer = 0;
+        }
+        return newImage;
     }
 
     public static int[][] shrinkVertically(int[][] imageTwoD) {
